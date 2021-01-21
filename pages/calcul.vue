@@ -1,7 +1,8 @@
 <template>
   <div>
-    <section class="section">
 
+    <section class="section">
+      <div class="title m-5">Calcul</div>
       <div class="navbar-end">
           <b-taglist attached>
           <b-tag :type="this.couleur_niveau" size="is-large"> {{ this.niveau }} </b-tag>
@@ -22,15 +23,15 @@
       </div>
     </section>
     <div v-if="this.est_fini">
+      <a href="/">
       <b-button size="is-large" class="is-light"
-                  icon-left="home"
-                  to="/">
+                  icon-left="home">
                   Accueil
               </b-button>
-       
+      </a>
       </div>
     <div v-else>
-       <b-button  size="is-large" class="is-success"
+      <b-button  size="is-large" class="is-success"
                   icon-left="check"
                   @click="verifier">
                   Valider
@@ -43,7 +44,7 @@
 export default {
   data() {
     return {
-      couleur_niveau: "",
+      couleur_niveau: "is-success",
       niveau: "facile",
       bonne_rep: 0,
       nbr_question: 0,
@@ -120,6 +121,10 @@ export default {
       }
     }
   },
+  created: function() {
+    this.niveau = this.$route.query.niveau
+    if(this.niveau == undefined) this.niveau = "facile"
+  },
   mounted: function() {
     if(this.niveau == "facile") this.couleur_niveau = "is-success"
     else if(this.niveau == "moyen") this.couleur_niveau = "is-warning"
@@ -140,17 +145,16 @@ export default {
       if(this.pos == this.question[this.niveau].length) {
         if(this.niveau == "difficile") {
           this.est_fini = true
+          this.pos--
         } else {
           this.niveau = (this.niveau == "facile" ? "moyen" : "difficile")
           console.log(this.niveau)
           if(this.niveau == "facile") this.couleur_niveau = "is-success"
           else if(this.niveau == "moyen") this.couleur_niveau = "is-warning"
           else this.couleur_niveau = "is-danger"
+          this.pos = 0
         }
-
-        this.pos = 0
       }
-
     }
   }
 }
