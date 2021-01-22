@@ -4,26 +4,59 @@
     <section class="section">
       <div class="title m-5">{{ this.nom_jeu}}</div>
       <div class="navbar-end">
-          <b-taglist attached>
-          <b-tag :type="this.couleur_niveau" size="is-large"> {{ this.niveau }} </b-tag>
-          <b-tag type="is-light" size="is-large">{{ this.bonne_rep }} <b>/ {{ this.nbr_question }}</b></b-tag>
-      </b-taglist>
+        <b-taglist attached>
+          <!-- Niveau -->
+          <b-tooltip label="Niveau"
+            position="is-bottom">
+            <a><b-tag :type="this.couleur_niveau" size="is-large"> {{ this.niveau }} </b-tag></a>
+          </b-tooltip>
+
+          <!-- Score -->
+          <b-tooltip label="Score"
+            position="is-bottom">
+            <a><b-tag type="is-light" size="is-large">{{ this.bonne_rep }} <b>/ {{ this.nbr_question}}</b></b-tag></a>
+          </b-tooltip>
+
+          <!-- Didacticiel -->
+          <b-tooltip position="is-left" multilined>
+            <a><b-tag type="is-info" size="is-large">?</b-tag></a>
+            <template v-slot:content>
+              <!-- Facile -->
+              <div v-if="niveau == 'facile'">
+                Entrer le mot correspondant à l'image.<hr>
+                <b>Exemple :</b><hr>
+                <figure class="image is-128x128">
+                  <img src="https://static1.caroom.fr/guide/wp-content/uploads/2017/05/renault_twingo.png">
+                  Voiture
+                </figure>
+              </div>
+              <div v-else-if="niveau == 'moyen'">
+                <b>Conjuguer</b> le verbe entre parenthèses au passé composé, puis valider.
+              </div>
+              <div v-else-if="niveau == 'difficile'">
+                <b>Cocher</b> la bonne réponse, puis valider.
+              </div>
+              <!-- Moyen -->
+              <!-- Difficile -->
+            </template>
+          </b-tooltip>
+        </b-taglist>
       </div>
     </section>
     <section class="section">
     <!-- Facile -->
-      <div v-if="this.niveau=='facile'">
+      <div v-if="niveau=='facile'">
         <section class="section rows is-centered">
-          <div class="is-centered columns">
-            <img width="200px" :src="this.question[this.niveau][this.pos]['image']">
-          </div>
+          <figure class="image is-128x128">
+            <img :src="this.question[this.niveau][this.pos]['image']">
+          </figure>
           <b-field label="Réponse :">
               <b-input width="200px" v-model="reponse_text"></b-input>
           </b-field>
         </section>
       </div>
     <!-- Moyen -->
-      <div v-else-if="this.niveau=='moyen'">
+      <div v-else-if="niveau=='moyen'">
         <section class="section is-centered rows">
           <div class="columns">
             <div class="subtitle mr-3">{{ question["moyen"][this.pos]["question-p1"] }}</div>

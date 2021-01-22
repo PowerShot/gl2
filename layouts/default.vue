@@ -1,54 +1,61 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </div>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu"
     >
-      <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
-          >
+    <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          <b-icon class="mr-1" icon="home" /> Accueil
         </a>
 
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
+        <div class="navbar-item has-dropdown is-hoverable"
+          v-for="(item, key) of items"
+          :key="key">
+          <a class="navbar-link" :href="item.to.name">
+            <b-icon class="mr-1" :icon="item.icon" /> {{ item.title }}
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" :href="item.to.name">
+              Facile *
+            </a>
+            <a class="navbar-item" :href="item.to.name+'?niveau=moyen'">
+              Moyen **
+            </a>
+            <a class="navbar-item"  :href="item.to.name+'?niveau=difficile'">
+              Difficile ***
+            </a>
+          </div>
         </div>
+    </div>
+  </div>
+</nav>
+    <!-- <nav class="navbar is-primary">
+      <div
+        v-for="(item, key) of items"
+          :key="key">
+        <a class="navbar-item">
+          <b-icon class="mr-4" :icon="item.icon" /> {{ item.title }}
+        </a>
+
+        <hr class="navbar-divider">
       </div>
-    </nav>
+    </nav> -->
 
-    <section class="main-content columns">
-      <aside class="column is-2 section">
-        <p class="menu-label is-hidden-touch">
-          General
-        </p>
-        <ul class="menu-list">
-          <li
-            v-for="(item, key) of items"
-            :key="key"
-          >
-            <nuxt-link
-              :to="item.to"
-              exact-active-class="is-active"
-            >
-              <b-icon :icon="item.icon" /> {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </aside>
-
-      <div class="container column is-10">
+    <div class="container column hero-body">
         <nuxt />
       </div>
-    </section>
   </div>
 </template>
 
@@ -58,24 +65,22 @@ export default {
     return {
       items: [
         {
-          title: 'Accueil',
-          icon: 'home',
-          to: { name: 'index' }
-        },
-        {
           title: 'Lecture',
           icon: 'lightbulb',
-          to: { name: 'lecture' }
+          to: { name: 'lecture' },
+          color: 'is-primary'
         },
         {
           title: 'Écriture',
           icon: 'read',
-          to: { name: 'ecriture' }
+          to: { name: 'ecriture' },
+          color: 'is-primary'
         },
         {
           title: 'Calcul',
           icon: 'calculator-variant',
-          to: { name: 'calcul' }
+          to: { name: 'calcul' },
+          color: 'is-primary'
         }
       ]
     }

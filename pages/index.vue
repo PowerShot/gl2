@@ -12,11 +12,9 @@
       <card
         title="Écriture"
       >
-        <div class="rows">
-          <a href="ecriture?niveau=facile"><b-button type="is-success">Facile (Vocabulaire)</b-button></a>
-          <a href="ecriture?niveau=moyen"><b-button type="is-warning">Moyen (Conjugaison)</b-button></a>
-          <a href="ecriture?niveau=difficile"><b-button type="is-danger">Difficile (Orthographe)</b-button></a>
-        </div>
+          <a href="ecriture?niveau=facile"><b-button type="is-success">Facile</b-button></a>
+          <a href="ecriture?niveau=moyen"><b-button type="is-warning">Moyen</b-button></a>
+          <a href="ecriture?niveau=difficile"><b-button type="is-danger">Difficile</b-button></a>
       </card>
 
       <card

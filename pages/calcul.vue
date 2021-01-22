@@ -1,13 +1,32 @@
 <template>
-  <div>
-
+  <div class="is-max-desktop">
     <section class="section">
       <div class="title m-5">Calcul</div>
       <div class="navbar-end">
-          <b-taglist attached>
-          <b-tag :type="this.couleur_niveau" size="is-large"> {{ this.niveau }} </b-tag>
-          <b-tag type="is-light" size="is-large">{{ this.bonne_rep }} <b>/ {{ this.nbr_question}}</b></b-tag>
-      </b-taglist>
+        <b-taglist attached>
+          <!-- Niveau -->
+          <b-tooltip label="Niveau"
+            position="is-bottom">
+            <a><b-tag :type="this.couleur_niveau" size="is-large"> {{ this.niveau }} </b-tag></a>
+          </b-tooltip>
+
+          <!-- Score -->
+          <b-tooltip label="Score"
+            position="is-bottom">
+            <a><b-tag type="is-light" size="is-large">{{ this.bonne_rep }} <b>/ {{ this.nbr_question}}</b></b-tag></a>
+          </b-tooltip>
+
+          <!-- Didacticiel -->
+          <b-tooltip position="is-left" multilined>
+            <a><b-tag type="is-info" size="is-large">?</b-tag></a>
+            <template v-slot:content>
+              <!-- Facile -->
+              <!-- Moyen -->
+              <!-- Difficile -->
+                <b>Résoudre le calcul</b> et <b>insérer</b> le résultat, puis valider.
+            </template>
+          </b-tooltip>
+        </b-taglist>
       </div>
 
       <div class="container columns is-centered">
@@ -141,6 +160,7 @@ export default {
         this.nbr_question++
         this.pos++
       }
+      this.entree=0
 
       if(this.pos == this.question[this.niveau].length) {
         if(this.niveau == "difficile") {
