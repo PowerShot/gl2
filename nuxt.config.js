@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'gl2',
+    title: 'Entraînement lecture, écriture, calcul',
     htmlAttrs: {
       lang: 'en'
     },
