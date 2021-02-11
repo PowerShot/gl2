@@ -2,9 +2,6 @@
   <div>
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <div class="navbar-item">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </div>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -39,6 +36,18 @@
           </div>
         </div>
     </div>
+    <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary"  @click="alertJeuSerieu">
+                <strong>Qu'es-ce qu'un jeu sérieux ?</strong>
+              </a>
+              <a class="button is-light" href="/fiche">
+                Aide à domicile (fiche métier)
+              </a>
+            </div>
+          </div>
+        </div>
   </div>
 </nav>
     <!-- <nav class="navbar is-primary">
@@ -84,6 +93,15 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    alertJeuSerieu() {
+      this.$buefy.dialog.alert({
+          title: "Qu'es-ce qu'un jeu sérieux ?",
+          message: "Un <b>jeu sérieux</b> est une activité pédagogique avec des ressorts de divertissement, associant un objectif sérieux.<br> C’est une application informatique, dont l'objectif est de combiner à la fois des aspects sérieux tels, de manière non exhaustive, l'enseignement, l'apprentissage, la communication, ou encore l'information, avec des ressorts ludiques issus du jeu vidéo.<br> Une telle association a donc pour but de s'écarter du simple divertissement.<br><br><a href='http://www.cndp.fr/crdp-reims/index.php?id=2237' target='_blank'>En savoir plus</a>",
+          confirmText: 'OK'
+      })
+    },
   }
 }
 </script>
