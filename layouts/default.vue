@@ -24,13 +24,13 @@
             <b-icon class="mr-1" :icon="item.icon" /> {{ item.title }}
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" :href="item.to.name">
+            <a class="navbar-item" :href="'/'+item.to.name+'?niveau=facile'">
               Facile *
             </a>
-            <a class="navbar-item" :href="item.to.name+'?niveau=moyen'">
+            <a class="navbar-item" :href="'/'+item.to.name+'?niveau=moyen'">
               Moyen **
             </a>
-            <a class="navbar-item"  :href="item.to.name+'?niveau=difficile'">
+            <a class="navbar-item"  :href="'/'+item.to.name+'?niveau=difficile'">
               Difficile ***
             </a>
           </div>
