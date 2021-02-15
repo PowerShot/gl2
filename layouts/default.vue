@@ -20,7 +20,7 @@
         <div class="navbar-item has-dropdown is-hoverable"
           v-for="(item, key) of items"
           :key="key">
-          <a class="navbar-link" :href="item.to.name">
+          <a class="navbar-link" :href="'/'+item.to.name+'?niveau=facile'">
             <b-icon class="mr-1" :icon="item.icon" /> {{ item.title }}
           </a>
           <div class="navbar-dropdown">
